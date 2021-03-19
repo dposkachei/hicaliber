@@ -1,0 +1,106 @@
+@keyframes spinAround {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+@mixin center($size) {
+    left: 50%;
+    margin-left: -($size / 2);
+    margin-top: -($size / 2);
+    position: absolute;
+    top: 50%;
+}
+
+@mixin loader {
+    animation: spinAround 500ms infinite linear;
+    border: 2px solid #fff;
+    border-radius: 100%;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    content: "";
+    display: block;
+    height: 20px;
+    position: relative;
+    width: 20px;
+}
+
+.account-image-container.dialog__loading.is-black.is-container {
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: .5;
+    }
+    &:after {
+        @include loader;
+        @include center(20px);
+        position: absolute;
+    }
+}
+
+
+.btn {
+    &.is-loading {
+        position: relative;
+        color: transparent !important;
+        pointer-events: none;
+
+        i:before {
+            visibility: hidden;
+        }
+
+        &:after {
+            @include loader;
+            @include center(20px);
+            position: absolute;
+        }
+
+        &.btn-link {
+            &:after {
+                border: 2px solid transparent;
+                border-right-color: #AEAEAE;
+                border-top-color: #AEAEAE;
+            }
+        }
+
+        &.text-black {
+            &:after {
+                border: 2px solid transparent;
+                border-right-color: #2a2c36;
+                border-top-color: #2a2c36;
+            }
+        }
+    }
+    &.btn-outline-primary {
+        &.is-loading {
+            &:after {
+                margin-top: -10px;
+                border-right-color: #AF9D4A;
+                border-top-color: #AF9D4A;
+            }
+        }
+    }
+}
+
+div {
+    &.is-loading {
+        position: relative;
+        pointer-events: none;
+        &:after {
+            @include loader;
+            position: absolute;
+            border: 4px solid transparent;
+            border-right-color: #AEAEAE;
+            border-top-color: #AEAEAE;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+.loading-page {
+  display: none;
+  &.loading-page-overlay {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(55, 58, 71, 0.9);
+    @include opacity(100);
+    z-index: 1000;
+  }
+}
+
+@import 'variables';
+@import 'mixins';
+@import 'animations/square-spin';
